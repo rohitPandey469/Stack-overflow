@@ -24,7 +24,7 @@ const QuestionsDetails = () => {
   const dispatch = useDispatch();
   const User = useSelector((state) => state.currentUserReducer);
   const location = useLocation();
-  const url = "http://localhost:5000";
+  const url = "https://stack-overflow-7tme.vercel.app";
 
   const handlePostAns = (e, answerLength) => {
     e.preventDefault();
