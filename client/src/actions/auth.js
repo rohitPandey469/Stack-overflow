@@ -14,6 +14,20 @@ export const signup = (authData, navigate) => async (dispatch) => {
   }
 };
 
+export const sentOtp = (emailData, navigate) => async (dispatch) => {
+  try {
+    const response = await api.sentOtp(emailData);
+    if (response.status === 200) {
+      navigate("/user/otp", { state: emailData.email });
+    }
+  } catch (error) {
+    setTimeout(() => {
+      return navigate("/Auth");
+    }, 5000);
+    console.log(error);
+  }
+};
+
 export const login = (authData, navigate) => async (dispatch) => {
   try {
     const { data } = await api.logIn(authData);

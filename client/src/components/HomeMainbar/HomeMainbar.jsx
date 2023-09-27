@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./HomeMainbar.css";
@@ -6,19 +6,25 @@ import QuestionList from "./QuestionList";
 
 const HomeMainbar = () => {
   const location = useLocation();
-  const user = 1;
+  var User =useSelector((state) => state.currentUserReducer);
   const navigate = useNavigate();
 
   const questionsList = useSelector((state) => state.questionsReducer);
 
   const checkAuth = () => {
-    if (user === null) {
+    if (User === null) {
       alert("login or signup to ask a question");
       navigate("/Auth");
     } else {
       navigate("/AskQuestion");
     }
   };
+
+  // useEffect(() => {
+  //   if (User === null) {
+  //     navigate("/Auth");
+  //   }
+  // }, [User]);
 
   return (
     <div className="main-bar">
@@ -37,8 +43,8 @@ const HomeMainbar = () => {
           <h1>Loading...</h1>
         ) : (
           <>
-            <p>{questionsList.data.length} questions</p>
-            <QuestionList questionsList={questionsList.data} />
+            <p>{questionsList?.data?.length} questions</p>
+            <QuestionList questionsList={questionsList?.data} />
           </>
         )}
       </div>

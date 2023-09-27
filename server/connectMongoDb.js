@@ -1,8 +1,13 @@
 import mongoose from "mongoose";
+import 'dotenv/config'
+
+const DB_URL =
+  process.env.DATABASE_URI;
+  // "mongodb://127.0.0.1:27017/stack-overflow";
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.CONNECTION_URL, {
+    const conn = await mongoose.connect(DB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

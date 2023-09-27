@@ -9,6 +9,12 @@ import DisplayQuestion from "./Pages/Questions/DisplayQuestion";
 import Tags from "./Pages/Tags/Tags";
 import Users from "./Pages/Users/Users";
 import UserProfile from "./Pages/UserProfile/UserProfile";
+import Otp from "./Pages/Auth/Otp";
+import Chatbot from "./Pages/Chatbot/Chatbot";
+import Success from "./Pages/Success/Success";
+import Cancel from "./Pages/Cancel/Cancel";
+import Info from "./Pages/Info/Info";
+import StripePayment from "./Pages/StripePayment/StripePayment";
 
 const AllRoutes = ({ slideIn, handleSlideIn }) => {
   return (
@@ -43,6 +49,15 @@ const AllRoutes = ({ slideIn, handleSlideIn }) => {
           <UserProfile slideIn={slideIn} handleSlideIn={handleSlideIn} />
         }
       />
+      <Route path="/user/otp" element={<Otp />} />
+      <Route
+        path="/chatbot"
+        element={<Chatbot slideIn={slideIn} handleSlideIn={handleSlideIn} />}
+      />
+      <Route path="/checkout" element={<StripePayment  slideIn={slideIn} handleSlideIn={handleSlideIn}/>} />
+      <Route path="/checkout/success" element={<Success />} />
+      <Route path="/checkout/cancel" element={<Cancel />} />
+      <Route path="/info" element={<Info slideIn={slideIn} handleSlideIn={handleSlideIn} />} />
     </Routes>
   );
 };

@@ -24,7 +24,7 @@ const QuestionsDetails = () => {
   const dispatch = useDispatch();
   const User = useSelector((state) => state.currentUserReducer);
   const location = useLocation();
-  const url = "http://localhost:3000";
+  const url = "http://localhost:5000";
 
   const handlePostAns = (e, answerLength) => {
     e.preventDefault();
@@ -41,6 +41,7 @@ const QuestionsDetails = () => {
             noOfAnswers: answerLength + 1,
             answerBody: Answer,
             userAnswered: User.result.name,
+            userId: User?.result._id,
           })
         );
         setAnswer("");
@@ -62,7 +63,7 @@ const QuestionsDetails = () => {
       alert("Login or Signup to up vote a question");
       Navigate("/Auth");
     } else {
-      dispatch(voteQuestion(id, "upVote"));
+      dispatch(voteQuestion(id, "upVote", User?.result?._id));
     }
   };
 
@@ -71,7 +72,7 @@ const QuestionsDetails = () => {
       alert("Login or Signup to down vote a question");
       Navigate("/Auth");
     } else {
-      dispatch(voteQuestion(id, "downVote"));
+      dispatch(voteQuestion(id, "downVote", User?.result?._id));
     }
   };
 

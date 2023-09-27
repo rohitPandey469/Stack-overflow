@@ -21,6 +21,7 @@ const Navbar = ({ handleSlideIn }) => {
     dispatch(setCurrentUser(null));
   };
 
+  
   useEffect(() => {
     const token = User?.token;
     if (token) {
@@ -42,10 +43,10 @@ const Navbar = ({ handleSlideIn }) => {
           <Link to="/" className="nav-item nav-logo">
             <img src={logo} alt="logo" />
           </Link>
-          <Link to="/" className="nav-item nav-btn res-nav">
+          <Link to="/info" className="nav-item nav-btn res-nav">
             About
           </Link>
-          <Link to="/" className="nav-item nav-btn res-nav">
+          <Link to="/checkout" className="nav-item nav-btn res-nav">
             Products
           </Link>
           <Link to="/" className="nav-item nav-btn res-nav">
@@ -74,7 +75,7 @@ const Navbar = ({ handleSlideIn }) => {
                   to={`/Users/${User?.result?._id}`}
                   style={{ color: "white", textDecoration: "none" }}
                 >
-                  {User.result.name.charAt(0).toUpperCase()}
+                  {User?.result.name.charAt(0).toUpperCase()}
                 </Link>
               </Avatar>
               <button className="nav-item nav-links" onClick={handleLogout}>

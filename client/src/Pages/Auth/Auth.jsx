@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./Auth.css";
 import icon from "../../assets/icon.png";
 import AboutAuth from "./AboutAuth";
-import { signup, login } from "../../actions/auth";
+import { signup, login, sentOtp } from "../../actions/auth";
 const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
   const [name, setName] = useState("");
@@ -33,7 +33,10 @@ const Auth = () => {
       }
       dispatch(signup({ name, email, password }, navigate));
     } else {
-      dispatch(login({ email, password }, navigate));
+      const data = {
+        email: email,
+      };
+      dispatch(sentOtp(data, navigate));
     }
   };
 
@@ -69,25 +72,27 @@ const Auth = () => {
               }}
             />
           </label>
-          <label htmlFor="password">
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h4>Password</h4>
-              {!isSignup && (
-                <p style={{ color: "#007ac6", fontSize: "13px" }}>
-                  forgot password?
-                </p>
-              )}
-            </div>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
-          </label>
+          {isSignup && (
+            <label htmlFor="password">
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <h4>Password</h4>
+                {!isSignup && (
+                  <p style={{ color: "#007ac6", fontSize: "13px" }}>
+                    forgot password?
+                  </p>
+                )}
+              </div>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+            </label>
+          )}
           <button type="submit" className="auth-btn">
             {isSignup ? "Sign up" : "Log in"}
           </button>
